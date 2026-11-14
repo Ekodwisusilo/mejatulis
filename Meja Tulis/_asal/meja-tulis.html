@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meja Tulis</title>
+<style>
+:root{--bg:#eef1f0;--sf:#fff;--ink:#14262b;--mu:#5b6b70;--ln:#d5ddda;--ac:#2f5d62;--acs:#dcebea;--be:#b4436c;--bes:#f6e1e9;--gd:#8a6a1f;--gds:#f4ecd3;--box:border-box;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1719;--sf:#18242a;--ink:#e6eeee;--mu:#93a6a9;--ln:#2a3a40;--ac:#7fc0c2;--acs:#1f3a3d;--be:#ef8fb0;--bes:#3a2230;--gd:#e2bf63;--gds:#3a331b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1719;--sf:#18242a;--ink:#e6eeee;--mu:#93a6a9;--ln:#2a3a40;--ac:#7fc0c2;--acs:#1f3a3d;--be:#ef8fb0;--bes:#3a2230;--gd:#e2bf63;--gds:#3a331b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3,.serif{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 64px}
+header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:8px 0 20px}
+header h1{margin:0;font-size:1.9rem}
+header p{margin:0;color:var(--mu);font-size:.92rem}
+nav{display:flex;gap:4px;background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:4px}
+nav button{border:0;background:none;color:var(--mu);padding:8px 14px;border-radius:7px;font:inherit;font-weight:500;cursor:pointer}
+nav button[aria-current="true"]{background:var(--ac);color:var(--bg)}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.btn{border:1px solid var(--ac);background:var(--ac);color:var(--bg);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:500}
+.btn.ghost{background:none;color:var(--ac)}
+.btn.danger{background:none;border-color:var(--be);color:var(--be)}
+.btn.sm{padding:4px 10px;font-size:.85rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+.stat{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-size:1.7rem;font-family:Georgia,serif}
+.stat span{color:var(--mu);font-size:.88rem}
+.sec{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:28px 0 12px}
+.sec h2{margin:0;font-size:1.3rem}
+.pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:820px){.pipe{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pipe{grid-template-columns:1fr}}
+.col{background:var(--acs);border-radius:10px;padding:10px;min-height:120px}
+.col h3{margin:2px 4px 8px;font-size:1rem;display:flex;justify-content:space-between}
+.col h3 small{font-family:system-ui;font-weight:400;color:var(--mu)}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;display:block;width:100%;text-align:left}
+.card:hover{border-color:var(--ac)}
+.card .t{font-weight:600;overflow-wrap:anywhere}
+.meta{color:var(--mu);font-size:.82rem}
+.bar{height:5px;background:var(--ln);border-radius:3px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac)}
+.list{display:grid;gap:8px}
+.row{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;cursor:pointer;width:100%;text-align:left}
+.row:hover{border-color:var(--ac)}
+.chip{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.8rem;background:var(--acs);color:var(--ac);white-space:nowrap}
+.chip.hot{background:var(--bes);color:var(--be)}
+.chip.gold{background:var(--gds);color:var(--gd)}
+.empty{border:1px dashed var(--ln);border-radius:10px;padding:22px;color:var(--mu);text-align:center}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+dialog{border:1px solid var(--ln);border-radius:12px;background:var(--sf);color:var(--ink);width:min(680px,94vw);max-height:92vh;padding:0}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg{padding:18px 18px 12px;display:grid;gap:12px}
+.dlg h2{margin:0}
+label{display:grid;gap:4px;font-size:.88rem;color:var(--mu)}
+input,select,textarea{border:1px solid var(--ln);background:var(--bg);border-radius:8px;padding:8px 10px;width:100%;color:var(--ink)}
+textarea{min-height:200px;resize:vertical;line-height:1.6}
+textarea.s{min-height:70px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.g2{grid-template-columns:1fr}}
+.chk{display:flex;gap:8px;align-items:flex-start;color:var(--ink);font-size:.95rem}
+.chk input{width:auto;margin-top:5px}
+.stg{background:var(--bg);border-radius:8px;padding:10px 12px}
+.stg h4{margin:0 0 6px;font-size:.95rem}
+.foot{display:flex;justify-content:space-between;gap:8px;padding:12px 18px;border-top:1px solid var(--ln);position:sticky;bottom:0;background:var(--sf);flex-wrap:wrap}
+.wc{font-size:.85rem;color:var(--mu);font-weight:400}
+.edtop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.etitle{font-size:1.7rem;border:0;border-bottom:1px solid var(--ln);border-radius:0;background:none;padding:6px 0;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:620px){.g3{grid-template-columns:1fr}}
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.stp{border:1px solid var(--ln);background:var(--sf);color:var(--mu);border-radius:999px;padding:6px 14px;cursor:pointer}
+.stp.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.stp.lock{opacity:.55}
+.ed{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:18px;align-items:start}
+.ed.nosb{grid-template-columns:1fr}.ed.nosb .side{display:none}
+@media(max-width:820px){.ed{grid-template-columns:1fr}}
+.side{background:var(--acs);border-radius:10px;padding:12px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+@media(max-width:820px){.side{position:static;max-height:60vh}}
+.side h3{margin:0 0 4px;font-size:1.05rem}
+.si{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:8px 10px;margin-top:8px}
+.si.cur{border-color:var(--be);box-shadow:0 0 0 1px var(--be)}
+.si label{gap:2px}.si b{color:var(--ink)}
+.si textarea{border:0;background:none;padding:2px 0;min-height:0;resize:none;overflow:hidden;line-height:1.45;font-size:.93rem}
+.si textarea:focus{background:var(--bg);outline:1px solid var(--ac)}
+textarea.draft{min-height:62vh;font-family:Georgia,'Times New Roman',serif;font-size:1.05rem;line-height:1.75;padding:16px 18px}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.gate{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:12px 14px;background:var(--sf);border:1px solid var(--ln);border-radius:10px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.prepbox{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:16px 18px;max-width:780px}
+.pi{margin-top:14px}.pi textarea{min-height:44px;resize:none;overflow:hidden}
+.guide{display:grid;gap:14px}.guide section{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:14px 18px}.guide h3{margin:0 0 6px;font-size:1.1rem}.guide ol,.guide ul{margin:6px 0;padding-left:22px}.guide li{margin:5px 0}.guide p{margin:6px 0}
+.beats{background:var(--bg);border-radius:8px;padding:10px 12px}.beats summary{cursor:pointer;font-weight:600}.beats>label{margin-top:14px}.bh{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><h1>Meja Tulis</h1><p>Catat tulisan, kejar tenggat lomba, dan pantau tiap tahapnya.</p></div>
+  <nav aria-label="Navigasi">
+    <button data-v="dash" aria-current="true">Dashboard</button>
+    <button data-v="pieces">Tulisan</button>
+    <button data-v="contests">Lomba</button>
+    <button data-v="guide">Panduan</button>
+  </nav>
+</header>
+<main id="main"></main>
+<div class="sec"><span class="meta">Data tersimpan di peramban ini saja. Ekspor secara berkala sebagai cadangan.</span>
+  <span class="tools"><button class="btn ghost sm" id="exp">Ekspor data</button><button class="btn ghost sm" id="imp">Impor data</button></span></div>
+</div>
+<dialog id="dlg"></dialog>
+<input type="file" id="file" accept="application/json" hidden>
+<script>
+const STAGES=["Persiapan","Menulis","Editorial","Terkirim"];
+const CHECKS={Menulis:["Tulis draf pertama","Capai target jumlah kata","Diamkan 1–2 hari sebelum menyunting"],Editorial:["Revisi alur dan struktur","Sunting bahasa dan ejaan","Baca keras-keras","Cocokkan dengan format ketentuan","Kirim"]};
+const TYPES=["Puisi","Fiksi mini","Cerpen","Novel","Esai","Lainnya"];
+const CSTAT=["Mengincar","Disiapkan","Terkirim","Menang","Tidak lolos"];
+const KEY="meja-tulis-v1";
+const BEATS=[
+["Opening Image","Gambaran pembuka","Potret awal dunia dan tokoh sebelum berubah. Tetapkan nada dan titik awal perjalanan.",0,1],
+["Theme Stated","Tema dinyatakan","Seseorang mengisyaratkan pelajaran yang kelak harus dipahami tokoh utama, yang belum ia sadari.",5,5],
+["Set-Up","Pengenalan","Kenalkan tokoh, kehidupan sehari-harinya, kekurangan, keinginan, dan hal yang perlu berubah.",1,10],
+["Catalyst","Pemicu","Peristiwa yang mengguncang dunia tokoh dan tidak bisa diabaikan.",10,10],
+["Debate","Perdebatan","Tokoh ragu dan bergulat dengan pilihan. Pertanyaan besar cerita mulai terbentuk.",10,20],
+["Break into Two","Memasuki babak dua","Tokoh membuat keputusan sadar untuk melangkah ke situasi atau dunia yang baru.",20,20],
+["B Story","Kisah B","Subplot, sering berupa hubungan baru, yang membawa pelajaran tema.",22,22],
+["Fun and Games","Bersenang-senang dan bermain","Janji premis dipenuhi: tokoh menjelajahi dunia baru lewat adegan yang membuat pembaca tertarik pada ceritamu.",20,50],
+["Midpoint","Titik tengah","Kemenangan atau kekalahan semu. Taruhan naik dan arah cerita bergeser.",50,50],
+["Bad Guys Close In","Lawan mendekat","Tekanan luar dan keretakan dalam diri tokoh menggerogoti rencananya.",50,75],
+["All Is Lost","Semua hilang","Titik terendah. Ada yang hilang atau “mati”, entah harapan, orang, atau cara hidup lama.",75,75],
+["Dark Night of the Soul","Malam gelap jiwa","Tokoh meratap dan merenung hingga berani menghadapi kebenaran tentang dirinya.",75,80],
+["Break into Three","Memasuki babak tiga","Pencerahan: pelajaran dari kisah A dan kisah B menyatu menjadi rencana baru.",80,80],
+["Finale","Klimaks","Tokoh menerapkan pelajarannya, menghadapi lawan, dan menuntaskan konflik.",80,99],
+["Final Image","Gambaran penutup","Cermin dari gambaran pembuka: tunjukkan sejauh mana tokoh telah berubah.",99,100]
+];
+const nf=n=>Math.round(n).toLocaleString("id-ID");
+const PREP={
+Puisi:{title:"Lembar persiapan puisi",intro:"Puisi tidak butuh kerangka kaku. Lembar ini membantu menemukan inti rasa, citraan, dan bentuk sebelum kamu mulai menulis.",items:[
+["Pemicu","","Gambar, peristiwa, kalimat yang terdengar, atau perasaan yang membuatmu ingin menulis ini."],
+["Inti rasa","","Satu kalimat tentang apa yang ingin dirasakan atau disadari pembaca di akhir."],
+["Citraan","","Tiga sampai lima gambaran konkret yang bisa dilihat, didengar, dicium, dirasa, atau diraba."],
+["Suara","","Siapa yang berbicara dan kepada siapa? Aku lirik, kau, atau pihak lain."],
+["Bentuk","","Pilih bentuk yang melayani isi: bebas, soneta, haiku, pantun, atau balada. Tentukan panjang bait dan baris."],
+["Bunyi dan diksi","","Kata kunci, rima, aliterasi, dan irama. Catat juga klise yang ingin dihindari."],
+["Perubahan","","Titik tempat nada atau pandangan bergeser, supaya puisi bergerak dan tidak berhenti di satu suasana."],
+["Baris penutup","","Rancang akhir yang meninggalkan gema, bukan menjelaskan maksud puisi."],
+["Judul","","Judul yang membuka atau menambah makna, bukan sekadar mengulang isi."]]},
+"Fiksi mini":{title:"Lembar persiapan fiksi mini",intro:"Fiksi mini (sekitar 100–1.000 kata) menangkap satu momen. Tidak ada ruang untuk pengantar panjang, jadi putuskan intinya sebelum menulis.",items:[
+["Satu momen","","Peristiwa tunggal yang menjadi jantung cerita. Cerita ini tentang saat apa?"],
+["Tokoh dan keinginan","","Satu tokoh dengan satu keinginan yang jelas."],
+["Kalimat pembuka","","Mulai langsung di tengah aksi atau situasi yang menggugah rasa ingin tahu."],
+["Detail kunci","","Satu atau dua detail konkret yang cukup untuk menyiratkan latar dan perasaan."],
+["Pergeseran","","Putaran, pencerahan, atau perubahan makna yang membuat pembaca ingin membaca ulang."],
+["Kalimat penutup","","Berhenti sedikit lebih cepat dari yang terasa wajar dan sisakan ruang untuk pembaca."],
+["Judul dan batas kata","","Judul yang ikut bekerja sebagai bagian cerita, plus batas kata lomba, misalnya 100, 300, atau 500."]]},
+Cerpen:{title:"Lembar persiapan cerpen",intro:"Cerpen (kira-kira 1.500–5.000 kata) berpusat pada satu konflik utama dengan sedikit tokoh. Cek batas kata atau halaman di ketentuan lomba.",items:[
+["Premis","","Satu kalimat: siapa, ingin apa, dan apa yang menghalanginya."],
+["Tokoh","","Satu sampai tiga tokoh. Bedakan keinginan yang disadari dengan kebutuhan yang sebenarnya."],
+["Latar dan sudut pandang","","Waktu, tempat, dan suasana. Siapa yang bercerita dan mengapa dari sudut itu?"],
+["Pembuka","","Adegan atau kalimat pertama yang cepat membawa pembaca ke konflik.",0,10],
+["Konflik dan eskalasi","","Dua sampai tiga titik saat tekanan naik dan pilihan tokoh makin sempit.",10,70],
+["Klimaks","","Saat tokoh harus memilih dan konflik utama mencapai puncaknya.",70,90],
+["Penutup","","Perubahan atau pertanyaan yang tertinggal. Tidak perlu menjelaskan semuanya.",90,100],
+["Judul dan motif","","Judul sementara dan satu gambaran atau benda yang berulang sebagai pengikat cerita."]]},
+Novel:{title:"Lembar 15 beat",intro:"Kerangka novel dari Save the Cat! Writes a Novel karya Jessica Brody. Tulis satu atau dua kalimat peristiwa untuk tiap beat.",items:BEATS},
+Esai:{title:"Lembar persiapan esai",intro:"Esai kuat saat satu gagasan dikembangkan dengan bukti dan sudut pandang yang jelas.",items:[
+["Gagasan utama","","Satu kalimat tesis: apa yang ingin kamu yakinkan atau tunjukkan?"],
+["Mengapa penting","","Hubungkan dengan pembaca atau peristiwa terkini supaya esai terasa relevan."],
+["Bahan dan rujukan","","Data, pengalaman, kutipan, atau sumber yang akan dipakai. Catat asalnya."],
+["Susunan argumen","","Urutkan tiga sampai lima poin utama dari pembuka sampai penutup."],
+["Bantahan","","Keberatan yang mungkin muncul dan cara kamu menjawabnya."],
+["Penutup dan judul","","Kesimpulan atau ajakan yang tajam, serta judul yang menjanjikan sudut pandang."]]},
+Lainnya:{title:"Lembar persiapan umum",intro:"Panduan ringkas untuk jenis tulisan lain.",items:[
+["Tujuan","","Apa yang ingin dicapai tulisan ini?"],
+["Pembaca","","Siapa yang akan membaca dan apa yang sudah mereka ketahui?"],
+["Pesan utama","","Satu hal yang harus diingat pembaca."],
+["Kerangka","","Bagian utama dan urutannya."],
+["Bahan","","Riset, contoh, atau sumber yang diperlukan."]]}
+};
+let S={pieces:[],contests:[]},view="dash",filter="";let ed=null,prevView="dash",sideOpen=true,tm=null;
+try{const r=localStorage.getItem(KEY);if(r){const d=JSON.parse(r);if(d&&d.pieces&&d.contests)S=d}}catch(e){}
+function norm(){S.pieces.forEach(p=>{p.prep=p.prep||{};if(p.beats&&Object.keys(p.beats).length&&!p.prep.Novel)p.prep.Novel=p.beats;delete p.beats;p.checks=p.checks||{}})}
+norm();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const wc=t=>((t||"").trim().match(/\S+/g)||[]).length;
+const $=s=>document.querySelector(s);
+const days=d=>{if(!d)return null;const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(d+"T00:00:00")-t)/864e5)};
+const fmt=d=>d?new Date(d+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"}):"Tanpa tenggat";
+const cd=n=>n===null?"":n<0?"lewat "+(-n)+" hari":n===0?"hari ini":n+" hari lagi";
+function prog(p){const a=items(p).length,b=CHECKS.Menulis.length+CHECKS.Editorial.length;let d=prepDone(p);['Menulis','Editorial'].forEach(s=>CHECKS[s].forEach((_,i)=>{if(p.checks[s+':'+i])d++}));return Math.round(d/(a+b)*100)}
+const cname=id=>(S.contests.find(c=>c.id===id)||{}).name||"";
+
+function pieceCard(p){const w=wc(p.draft);return `<button class="card" data-p="${p.id}"><div class="t">${esc(p.title||"Tanpa judul")}</div><div class="meta">${esc(p.type)} · ${w}${p.target?" / "+p.target:""} kata</div>${p.contestId?`<div class="meta">Lomba: ${esc(cname(p.contestId))}</div>`:""}<div class="bar"><i style="width:${prog(p)}%"></i></div></button>`}
+
+function renderDash(){
+  const act=S.contests.filter(c=>["Mengincar","Disiapkan"].includes(c.status));
+  const up=act.filter(c=>c.deadline&&days(c.deadline)>=0).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,5);
+  const words=S.pieces.reduce((n,p)=>n+wc(p.draft),0);
+  const sent=S.contests.filter(c=>["Terkirim","Menang","Tidak lolos"].includes(c.status)).length;
+  return `<div class="stats"><div class="stat"><b>${S.pieces.length}</b><span>tulisan</span></div><div class="stat"><b>${words.toLocaleString("id-ID")}</b><span>kata di semua draf</span></div><div class="stat"><b>${act.length}</b><span>lomba dibidik</span></div><div class="stat"><b>${sent}</b><span>lomba diikuti</span></div></div>
+  <div class="sec"><h2>Tenggat terdekat</h2><button class="btn sm" data-new="c">Tambah lomba</button></div>
+  ${up.length?`<div class="list">${up.map(c=>{const n=days(c.deadline);return `<button class="row" data-c="${c.id}"><span><b>${esc(c.name)}</b><br><span class="meta">${esc(c.genre||"Semua genre")} · ${fmt(c.deadline)}</span></span><span class="chip ${n<=7?"hot":""}">${cd(n)}</span></button>`}).join("")}</div>`:`<div class="empty">Belum ada tenggat. Tambahkan lomba yang ingin kamu ikuti.</div>`}
+  <div class="sec"><h2>Alur tulisan</h2><button class="btn sm" data-new="p">Tulisan baru</button></div>
+  <div class="pipe">${STAGES.map(s=>{const ps=S.pieces.filter(p=>p.stage===s);return `<div class="col"><h3>${s}<small>${ps.length}</small></h3>${ps.map(pieceCard).join("")||'<div class="meta" style="padding:6px 4px">Kosong</div>'}</div>`}).join("")}</div>`;
+}
+function renderPieces(){
+  const ps=S.pieces.filter(p=>!filter||p.stage===filter);
+  return `<div class="sec"><h2>Tulisan</h2><span class="tools"><select id="flt" aria-label="Saring tahap" style="width:auto"><option value="">Semua tahap</option>${STAGES.map(s=>`<option ${filter===s?"selected":""}>${s}</option>`).join("")}</select><button class="btn ghost sm" id="exall">Ekspor ke Word</button><button class="btn sm" data-new="p">Tulisan baru</button></span></div>
+  ${ps.length?`<div class="list">${ps.map(p=>`<button class="row" data-p="${p.id}"><span><b>${esc(p.title||"Tanpa judul")}</b><br><span class="meta">${esc(p.type)} · ${wc(p.draft)} kata${p.contestId?" · "+esc(cname(p.contestId)):""}</span></span><span class="chip">${p.stage} · ${prog(p)}%</span></button>`).join("")}</div>`:`<div class="empty">Belum ada tulisan di tahap ini. Mulai dari gagasan kecil: satu puisi atau satu adegan.</div>`}`;
+}
+function renderContests(){
+  const cs=[...S.contests].sort((a,b)=>(a.deadline||"9").localeCompare(b.deadline||"9"));
+  return `<div class="sec"><h2>Lomba</h2><button class="btn sm" data-new="c">Tambah lomba</button></div>
+  ${cs.length?`<div class="list">${cs.map(c=>{const n=days(c.deadline),open=["Mengincar","Disiapkan"].includes(c.status);const ps=S.pieces.filter(p=>p.contestId===c.id);return `<button class="row" data-c="${c.id}"><span><b>${esc(c.name)}</b><br><span class="meta">${esc(c.genre||"Semua genre")} · ${fmt(c.deadline)}${ps.length?" · "+ps.map(p=>esc(p.title||"Tanpa judul")).join(", "):""}</span></span><span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><span class="chip ${c.status==="Menang"?"gold":""}">${c.status}</span>${open&&n!==null&&n>=0?`<span class="chip ${n<=7?"hot":""}">${cd(n)}</span>`:""}</span></button>`}).join("")}</div>`:`<div class="empty">Daftar lomba masih kosong. Catat nama, tenggat, dan tautan ketentuannya.</div>`}`;
+}
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc=u=>{let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+function zip(files){const enc=new TextEncoder(),parts=[],cd=[];let off=0,n=0;
+for(const k in files){n++;const nm=enc.encode(k),data=enc.encode(files[k]),c=crc(data);
+const lh=new DataView(new ArrayBuffer(30));lh.setUint32(0,0x04034b50,true);lh.setUint16(4,20,true);lh.setUint16(6,0x0800,true);lh.setUint16(12,0x21,true);lh.setUint32(14,c,true);lh.setUint32(18,data.length,true);lh.setUint32(22,data.length,true);lh.setUint16(26,nm.length,true);
+const ch=new DataView(new ArrayBuffer(46));ch.setUint32(0,0x02014b50,true);ch.setUint16(4,20,true);ch.setUint16(6,20,true);ch.setUint16(8,0x0800,true);ch.setUint16(14,0x21,true);ch.setUint32(16,c,true);ch.setUint32(20,data.length,true);ch.setUint32(24,data.length,true);ch.setUint16(28,nm.length,true);ch.setUint32(42,off,true);
+parts.push(lh,nm,data);cd.push(ch,nm);off+=30+nm.length+data.length}
+const size=cd.reduce((s,x)=>s+x.byteLength,0),end=new DataView(new ArrayBuffer(22));
+end.setUint32(0,0x06054b50,true);end.setUint16(8,n,true);end.setUint16(10,n,true);end.setUint32(12,size,true);end.setUint32(16,off,true);
+return new Blob([...parts,...cd,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})}
+const xe=s=>String(s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const run=t=>`<w:r><w:t xml:space='preserve'>${xe(t)}</w:t></w:r>`;
+function paras(p){const lines=(p.draft||'').replace(/\r/g,'').split('\n');
+if(p.type==='Puisi'){const out=[];let cur=[];const flush=()=>{if(cur.length){out.push(`<w:p><w:pPr><w:pStyle w:val='Puisi'/></w:pPr>${cur.map((l,i)=>(i?'<w:r><w:br/></w:r>':'')+run(l)).join('')}</w:p>`);cur=[]}};
+lines.forEach(l=>{if(l.trim())cur.push(l);else flush()});flush();return out.join('')}
+return lines.filter(l=>l.trim()).map(l=>`<w:p>${run(l.trim())}</w:p>`).join('')}
+function docxBlob(list){const W="xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'",X="<?xml version='1.0' encoding='UTF-8' standalone='yes'?>";
+const body=list.map((p,i)=>`<w:p><w:pPr><w:pStyle w:val='Title'/>${i?'<w:pageBreakBefore/>':''}</w:pPr>${run(p.title||'Tanpa judul')}</w:p>${paras(p)}`).join('');
+const R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+return zip({
+'[Content_Types].xml':X+"<Types xmlns='http://schemas.openxmlformats.org/package/2006/content-types'><Default Extension='rels' ContentType='application/vnd.openxmlformats-package.relationships+xml'/><Default Extension='xml' ContentType='application/xml'/><Override PartName='/word/document.xml' ContentType='application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml'/><Override PartName='/word/styles.xml' ContentType='application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml'/></Types>",
+'_rels/.rels':X+"<Relationships xmlns='http://schemas.openxmlformats.org/package/2006/relationships'><Relationship Id='rId1' Type='"+R+"/officeDocument' Target='word/document.xml'/></Relationships>",
+'word/_rels/document.xml.rels':X+"<Relationships xmlns='http://schemas.openxmlformats.org/package/2006/relationships'><Relationship Id='rId1' Type='"+R+"/styles' Target='styles.xml'/></Relationships>",
+'word/styles.xml':X+`<w:styles ${W}><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii='Times New Roman' w:hAnsi='Times New Roman' w:cs='Times New Roman'/><w:sz w:val='24'/><w:lang w:val='id-ID'/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after='120' w:line='360' w:lineRule='auto'/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type='paragraph' w:default='1' w:styleId='Normal'><w:name w:val='Normal'/></w:style><w:style w:type='paragraph' w:styleId='Title'><w:name w:val='Title'/><w:basedOn w:val='Normal'/><w:pPr><w:spacing w:before='0' w:after='360'/><w:jc w:val='center'/></w:pPr><w:rPr><w:b/><w:sz w:val='32'/></w:rPr></w:style><w:style w:type='paragraph' w:customStyle='1' w:styleId='Puisi'><w:name w:val='Puisi'/><w:basedOn w:val='Normal'/><w:pPr><w:spacing w:after='240' w:line='276' w:lineRule='auto'/></w:pPr></w:style></w:styles>`,
+'word/document.xml':X+`<w:document ${W}><w:body>${body}<w:sectPr><w:pgSz w:w='11906' w:h='16838'/><w:pgMar w:top='1440' w:right='1440' w:bottom='1440' w:left='1440' w:header='708' w:footer='708' w:gutter='0'/></w:sectPr></w:body></w:document>`})}
+async function saveFile(name,data){let dl=null;try{dl=window.claude&&claude.use?await claude.use('downloads'):null}catch(e){}
+if(!dl){try{const a=document.createElement('a');a.href=URL.createObjectURL(data instanceof Blob?data:new Blob([data]));a.download=name;a.click()}catch(e){alert('Unduhan tidak tersedia di tampilan ini.')}return}
+try{await dl.save({filename:name,data})}catch(e){if(!e||e.code!=='declined')alert('Berkas belum tersimpan'+(e&&e.message?': '+e.message:'.'))}}
+const slug=t=>(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'tulisan';
+const exportWord=(list,name)=>saveFile(name+'.docx',docxBlob(list));
+function exportAll(){const l=S.pieces.filter(p=>(!filter||p.stage===filter)&&(p.draft||'').trim());if(!l.length){alert('Belum ada tulisan berdraf pada tahap ini.');return}exportWord(l,l.length===1?slug(l[0].title):'kumpulan-tulisan'+(filter?'-'+slug(filter):''))}
+document.addEventListener('click',e=>{if(e.target.id==='exall')exportAll()});
+function renderGuide(){return `<div class="sec"><h2>Panduan penggunaan</h2></div><div class="guide">
+<section><h3>Mulai dalam lima menit</h3><ol><li>Di tab <b>Lomba</b>, tekan Tambah lomba, lalu isi nama, tenggat, dan tautan ketentuan.</li><li>Di tab <b>Tulisan</b> atau Dashboard, tekan Tulisan baru. Beri judul, pilih jenis, target kata, dan lomba yang dibidik.</li><li>Isi seluruh lembar persiapan. Setelah lengkap, tekan Selesaikan persiapan untuk membuka tahap menulis.</li><li>Tulis draf sambil melihat persiapanmu di panel kiri, lalu lanjutkan ke penyuntingan dan ekspor ke Word.</li></ol></section>
+<section><h3>Empat tahap tulisan</h3><ul><li><b>Persiapan</b>: halaman khusus untuk mengisi lembar persiapan sesuai jenis tulisan. Draf belum tampil di tahap ini. Tahap berikutnya baru terbuka setelah semua butir terisi. Isi tanda “-” pada butir yang tidak relevan.</li><li><b>Menulis</b>: ruang menulis lebar dengan penghitung kata dan daftar periksa. Persiapanmu tampil di panel kiri.</li><li><b>Editorial</b>: sunting draf dengan daftar periksa revisi struktur, bahasa, baca keras, dan format lomba.</li><li><b>Terkirim</b>: tulisan sudah dikirim. Jangan lupa ubah status lombanya di tab Lomba.</li></ul><p class="meta">Kamu bisa kembali ke tahap sebelumnya kapan saja lewat deretan tahap di atas editor.</p></section>
+<section><h3>Panel persiapan saat menulis</h3><ul><li>Setiap butir persiapan tampil di panel kiri sebagai kartu yang bisa diedit langsung. Revisi tersimpan otomatis dan langsung berlaku.</li><li>Untuk cerpen dan novel, jika target kata diisi, tiap kartu menampilkan perkiraan posisinya dalam naskah. Kartu yang sesuai dengan jumlah katamu saat ini diberi bingkai berwarna.</li><li>Tekan Sembunyikan persiapan untuk memperluas ruang menulis, dan Tampilkan persiapan untuk memunculkannya lagi.</li><li>Di layar sempit, panel tampil di atas area menulis.</li></ul></section>
+<section><h3>Lembar persiapan sesuai jenis tulisan</h3><ul><li><b>Puisi</b>: pemicu, inti rasa, citraan, suara, bentuk, bunyi dan diksi, perubahan, baris penutup, judul.</li><li><b>Fiksi mini</b>: satu momen, tokoh, kalimat pembuka, detail kunci, pergeseran, kalimat penutup, judul.</li><li><b>Cerpen</b>: premis, tokoh, latar dan sudut pandang, pembuka, konflik, klimaks, penutup, motif.</li><li><b>Novel</b>: lembar 15 beat, dijelaskan di bawah.</li><li><b>Esai</b> dan <b>Lainnya</b>: gagasan atau tujuan, pembaca, bahan, dan kerangka.</li></ul><p>Isianmu tersimpan terpisah untuk tiap jenis, jadi berganti jenis tidak menghapus apa pun.</p></section>
+<section><h3>Novel: lembar 15 beat (Save the Cat! Writes a Novel)</h3><p>Metode ini dari buku <i>Save the Cat! Writes a Novel</i> karya Jessica Brody, yang mengembangkan kerangka Blake Snyder untuk novel. Ringkasan tiap beat di sini ditulis ulang dengan kata-kata sendiri, jadi baca bukunya untuk penjelasan dan contoh yang utuh. Isi satu atau dua kalimat peristiwa cerita milikmu untuk tiap beat. Persentase hanya acuan.</p><ul>${BEATS.map((b,i)=>`<li>${i+1}. ${b[0]} (${b[1].toLowerCase()}), sekitar ${b[3]===b[4]?b[3]+'%':b[3]+'–'+b[4]+'%'}</li>`).join('')}</ul></section>
+<section><h3>Mengelola lomba</h3><ul><li>Hanya lomba berstatus <b>Mengincar</b> atau <b>Disiapkan</b> yang muncul di tenggat terdekat Dashboard.</li><li>Penanda merah muda berarti tenggat tinggal tujuh hari atau kurang.</li><li>Hubungkan tulisan dengan lomba lewat pilihan Untuk lomba di editor. Tenggatnya ikut tampil di panel persiapan.</li><li>Simpan batas kata, hadiah, dan syarat khusus di kolom catatan lomba.</li></ul></section>
+<section><h3>Ekspor ke Microsoft Word</h3><ul><li>Di editor, tekan <b>Ekspor ke Word</b> di bagian atas. Draf yang sedang tampil langsung diekspor.</li><li>Di tab <b>Tulisan</b>, tombol <b>Ekspor ke Word</b> menggabungkan semua tulisan berdraf ke satu berkas, masing-masing di halaman baru. Pakai penyaring tahap, misalnya Terkirim, untuk memilih yang diekspor.</li><li>Hasilnya berkas .docx A4 dengan judul di tengah, huruf Times New Roman 12 pt, dan spasi 1,5. Baris dan bait puisi dipertahankan.</li><li>Hanya judul dan draf yang diekspor, tanpa lembar persiapan dan catatan. Akan muncul konfirmasi sebelum berkas tersimpan.</li></ul></section>
+<section><h3>Data dan cadangan</h3><p>Semua data tersimpan di peramban ini dan tidak dikirim ke mana pun. Jika berganti perangkat atau membersihkan data peramban, data bisa hilang. Tekan <b>Ekspor data</b> di bagian bawah halaman untuk mengunduh cadangan, dan <b>Impor data</b> untuk memulihkannya.</p></section></div>`}
+function render(){
+  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-current",b.dataset.v===view));
+  $("#main").innerHTML=view==="editor"?renderEditor():view==="dash"?renderDash():view==="pieces"?renderPieces():view==="guide"?renderGuide():renderContests();
+  if(view==="editor"){document.querySelectorAll("textarea[data-grow]").forEach(grow);stats()}
+}
+
+function opts(arr,sel){return arr.map(a=>`<option ${a===sel?"selected":""}>${a}</option>`).join("")}
+const items=p=>(PREP[p.type]||PREP.Lainnya).items;
+const pv=p=>(p.prep[p.type]=p.prep[p.type]||{});
+const prepDone=p=>items(p).filter((_,i)=>(pv(p)[i]||'').trim()).length;
+const prepOK=p=>prepDone(p)===items(p).length;
+const grow=el=>{el.style.height='auto';el.style.height=el.scrollHeight+'px'};
+const subOf=b=>[b[1],b[3]!=null?(b[3]===b[4]?b[3]+'%':b[3]+'–'+b[4]+'%'):''].filter(Boolean).join(' · ');
+function touch(){const s=$('#sv');if(s)s.textContent='Menyimpan…';clearTimeout(tm);tm=setTimeout(()=>{save();const s=$('#sv');if(s)s.textContent='Tersimpan'},500)}
+function openEditor(id){const p=S.pieces.find(x=>x.id===id);if(!p)return;ed=p;if(view!=='editor')prevView=view;view='editor';sideOpen=window.innerWidth>820;render();window.scrollTo(0,0)}
+function newPiece(){const p={id:uid(),title:'',type:'Cerpen',stage:'Persiapan',target:'',draft:'',notes:'',contestId:'',checks:{},prep:{}};S.pieces.push(p);openEditor(p.id)}
+function leaveEditor(v){if(ed){clearTimeout(tm);const p=ed,empty=p.stage==='Persiapan'&&!p.title&&!(p.draft||'').trim()&&!(p.notes||'').trim()&&!Object.values(p.prep).some(o=>Object.values(o).some(x=>(x||'').trim()));if(empty)S.pieces=S.pieces.filter(x=>x!==p);save();ed=null}view=v||prevView;render()}
+function setStage(s){const p=ed;if(p.stage==='Persiapan'&&s!=='Persiapan'&&!prepOK(p)){alert('Lengkapi semua butir persiapan dulu. Butir yang tidak relevan boleh diisi tanda “-”.');return}p.stage=s;save();render();window.scrollTo(0,0)}
+function stats(){const p=ed;if(!p)return;const w=wc(p.draft),tg=+p.target,it=items(p),d=prepDone(p);
+const a=$('#wc');if(a)a.textContent=w+' kata'+(tg?' dari '+nf(tg):'');
+['#pc','#sc'].forEach(s=>{const el=$(s);if(el)el.textContent=d+'/'+it.length+' terisi'});
+const g=$('#go');if(g)g.disabled=d<it.length;
+it.forEach((b,i)=>{document.querySelectorAll('[data-pos="'+i+'"]').forEach(el=>{el.textContent=tg&&b[3]!=null?'≈ kata '+(b[3]===b[4]?nf(tg*b[3]/100):nf(tg*b[3]/100)+'–'+nf(tg*b[4]/100)):''});
+const si=document.querySelector('.si[data-i="'+i+'"]');if(si)si.classList.toggle('cur',!!(tg&&b[3]!=null&&p.stage==='Menulis'&&w>=tg*b[3]/100&&w<=tg*b[4]/100))})}
+function renderEditor(){const p=ed,st=p.stage,it=items(p),s=PREP[p.type]||PREP.Lainnya,v=pv(p);
+const con=S.contests.find(c=>c.id===p.contestId);
+const top=`<div class="edtop"><button class="btn ghost sm" id="back">← Kembali</button><span class="tools"><span class="wc" id="sv">Tersimpan</span><button class="btn ghost sm" id="exw">Ekspor ke Word</button><button class="btn danger sm" id="del">Hapus</button></span></div>
+<input id="e-title" class="etitle serif" placeholder="Judul tulisan" value="${esc(p.title)}">
+<div class="g3"><label>Jenis<select id="e-type">${opts(TYPES,p.type)}</select></label><label>Target jumlah kata<input id="e-target" type="number" min="0" value="${esc(p.target)}"></label><label>Untuk lomba<select id="e-contest"><option value="">Tidak ada</option>${S.contests.map(c=>`<option value="${c.id}" ${c.id===p.contestId?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label></div>
+<div class="stepper">${STAGES.map((x,i)=>`<button class="stp ${x===st?'on':''} ${x!=='Persiapan'&&st==='Persiapan'&&!prepOK(p)?'lock':''}" data-stage="${x}">${i+1}. ${x}</button>`).join('')}</div>`;
+if(st==='Persiapan')return top+`<div class="prepbox"><h2 style="margin:0 0 4px">${s.title}</h2><p class="meta">${s.intro}</p><p class="meta">Baca ketentuan lomba lebih dulu. Semua butir harus terisi untuk membuka tahap menulis. Isi tanda “-” pada butir yang tidak relevan.</p>${it.map((b,i)=>`<div class="pi"><label><span class="bh"><b>${i+1}. ${b[0]}</b>${subOf(b)?`<span class="meta">${subOf(b)}</span>`:''}<span class="meta" data-pos="${i}"></span></span><span class="meta">${b[2]}</span><textarea data-b="${i}" data-grow rows="1">${esc(v[i]||'')}</textarea></label></div>`).join('')}<div class="pi"><label><span class="bh"><b>Catatan riset dan ide</b><span class="meta">opsional</span></span><textarea id="e-notes" data-grow rows="1">${esc(p.notes)}</textarea></label></div><div class="gate"><span id="pc"></span><button class="btn" id="go">Selesaikan persiapan, mulai menulis</button></div></div>`;
+const side=`<aside class="side"><h3>Persiapan <span class="wc" id="sc"></span></h3>${con?`<p class="meta" style="margin:2px 0">Lomba: ${esc(con.name)}${con.deadline?' · '+fmt(con.deadline)+' ('+cd(days(con.deadline))+')':''}</p>`:''}<p class="meta" style="margin:2px 0 6px">${s.title}. Klik isian mana pun untuk merevisi. Perubahan tersimpan otomatis.</p>${it.map((b,i)=>`<div class="si" data-i="${i}"><label><span class="bh"><b>${i+1}. ${b[0]}</b><span class="meta" data-pos="${i}"></span></span><textarea data-b="${i}" data-grow rows="1" placeholder="${esc(b[2])}">${esc(v[i]||'')}</textarea></label></div>`).join('')}<div class="si"><label><b>Catatan riset dan ide</b><textarea id="e-notes" data-grow rows="1">${esc(p.notes)}</textarea></label></div></aside>`;
+const chk=CHECKS[st]?`<div class="stg" style="margin-top:14px"><h4>Daftar periksa ${st.toLowerCase()}</h4>${CHECKS[st].map((t,i)=>`<label class="chk"><input type="checkbox" data-k="${st}:${i}" ${p.checks[st+':'+i]?'checked':''}>${t}</label>`).join('')}</div>`:'';
+const nxt=st==='Menulis'?`<button class="btn" id="next" data-to="Editorial">Lanjut ke Editorial</button>`:st==='Editorial'?`<button class="btn" id="next" data-to="Terkirim">Tandai sudah terkirim</button>`:'';
+const msg=st==='Menulis'?'Selesai menulis draf? Lanjutkan ke penyuntingan.':st==='Editorial'?'Sudah disunting dan dikirim?':'Tulisan ini ditandai terkirim. Siap diekspor ke Word.';
+const main=`<section><div class="mh"><button class="btn ghost sm" id="tgl">${sideOpen?'Sembunyikan':'Tampilkan'} persiapan</button><span class="wc" id="wc"></span></div><textarea id="e-draft" class="draft" placeholder="Mulai menulis di sini…">${esc(p.draft)}</textarea>${chk}<div class="gate"><span class="meta">${msg}</span>${nxt}</div></section>`;
+return top+`<div class="ed ${sideOpen?'':'nosb'}">${side}${main}</div>`}
+document.addEventListener('input',e=>{if(view!=='editor'||!ed)return;const t=e.target,p=ed;
+if(t.id==='e-title')p.title=t.value;else if(t.id==='e-target')p.target=t.value;else if(t.id==='e-draft')p.draft=t.value;else if(t.id==='e-notes'){p.notes=t.value;grow(t)}
+else if(t.dataset&&t.dataset.b!==undefined){pv(p)[t.dataset.b]=t.value;grow(t)}else return;
+touch();stats()});
+document.addEventListener('change',e=>{if(view!=='editor'||!ed)return;const t=e.target,p=ed;
+if(t.id==='e-type'){p.type=t.value;save();render()}
+else if(t.id==='e-contest'){p.contestId=t.value;save();render()}
+else if(t.dataset&&t.dataset.k){p.checks[t.dataset.k]=t.checked;save()}});
+document.addEventListener('click',e=>{if(view!=='editor'||!ed)return;const t=e.target.closest('button');if(!t)return;
+if(t.id==='back')leaveEditor();
+else if(t.dataset.stage)setStage(t.dataset.stage);
+else if(t.id==='go')setStage('Menulis');
+else if(t.id==='next')setStage(t.dataset.to);
+else if(t.id==='tgl'){sideOpen=!sideOpen;render()}
+else if(t.id==='del'){if(confirm('Hapus tulisan ini?')){S.pieces=S.pieces.filter(x=>x!==ed);ed=null;save();leaveEditor()}}
+else if(t.id==='exw'){if(!(ed.draft||'').trim()){alert('Draf masih kosong. Tulis dulu isinya sebelum diekspor.');return}exportWord([ed],slug(ed.title))}});
+function openContest(id){
+  const c=id?{...S.contests.find(x=>x.id===id)}:{id:uid(),name:"",deadline:"",genre:"",link:"",status:"Mengincar",notes:""};
+  const isNew=!id,d=$("#dlg");
+  d.innerHTML=`<div class="dlg"><h2>${isNew?"Lomba baru":"Sunting lomba"}</h2>
+  <label>Nama lomba<input id="c-name" value="${esc(c.name)}"></label>
+  <div class="g2"><label>Tenggat<input id="c-dl" type="date" value="${esc(c.deadline)}"></label><label>Status<select id="c-st">${opts(CSTAT,c.status)}</select></label></div>
+  <div class="g2"><label>Genre atau tema<input id="c-genre" value="${esc(c.genre)}" placeholder="Misalnya cerpen, tema lingkungan"></label><label>Tautan ketentuan<input id="c-link" type="url" value="${esc(c.link)}" placeholder="https://"></label></div>
+  <label>Catatan (syarat, hadiah, jumlah kata)<textarea class="s" id="c-notes">${esc(c.notes)}</textarea></label>
+  ${c.link&&/^https?:\/\//.test(c.link)?`<a href="${esc(c.link)}" target="_blank" rel="noopener">Buka halaman ketentuan</a>`:""}
+  </div><div class="foot"><span>${isNew?"":'<button class="btn danger" id="del">Hapus</button>'}</span><span class="tools"><button class="btn ghost" id="cancel">Batal</button><button class="btn" id="ok">Simpan lomba</button></span></div>`;
+  $("#cancel").onclick=()=>d.close();
+  if(!isNew)$("#del").onclick=()=>{if(confirm("Hapus lomba ini?")){S.contests=S.contests.filter(x=>x.id!==id);S.pieces.forEach(p=>{if(p.contestId===id)p.contestId=""});save();d.close();render()}};
+  $("#ok").onclick=()=>{
+    c.name=$("#c-name").value.trim()||"Lomba tanpa nama";c.deadline=$("#c-dl").value;c.status=$("#c-st").value;c.genre=$("#c-genre").value.trim();c.link=$("#c-link").value.trim();c.notes=$("#c-notes").value;
+    if(isNew)S.contests.push(c);else S.contests[S.contests.findIndex(x=>x.id===id)]=c;
+    save();d.close();render();
+  };
+  d.showModal();
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-v],[data-p],[data-c],[data-new]");if(!t)return;
+  if(t.dataset.v){leaveEditor(t.dataset.v)}
+  else if(t.dataset.p)openEditor(t.dataset.p);
+  else if(t.dataset.c)openContest(t.dataset.c);
+  else if(t.dataset.new==="p")newPiece();
+  else openContest();
+});
+document.addEventListener("change",e=>{if(e.target.id==="flt"){filter=e.target.value;render()}});
+$("#exp").onclick=()=>saveFile("meja-tulis-cadangan.json",JSON.stringify(S,null,1));
+$("#imp").onclick=()=>$("#file").click();
+$("#file").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);if(!d.pieces||!d.contests)throw 0;if(confirm("Ganti data saat ini dengan isi cadangan?")){S=d;norm();ed=null;view="dash";save();render()}}catch(_){alert("Berkas tidak valid. Pilih file hasil ekspor Meja Tulis.")}});e.target.value=""};
+render();
+</script>
+</body>
+</html>

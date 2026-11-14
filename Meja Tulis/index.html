@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meja Tulis</title>
+<meta name="description" content="Catat tulisan, kejar tenggat lomba, dan pantau tiap tahapnya. Data tersimpan di perangkatmu.">
+<meta name="theme-color" content="#eef1f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1719" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meja Tulis">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><h1>Meja Tulis</h1><p>Catat tulisan, kejar tenggat lomba, dan pantau tiap tahapnya.</p></div>
+  <nav aria-label="Navigasi">
+    <button data-v="dash" aria-current="true">Dashboard</button>
+    <button data-v="pieces">Tulisan</button>
+    <button data-v="contests">Lomba</button>
+    <button data-v="data">Data</button>
+    <button data-v="guide">Panduan</button>
+  </nav>
+</header>
+<div id="banner" role="status" hidden></div>
+<main id="main"><noscript><div class="empty">Meja Tulis butuh JavaScript. Aktifkan JavaScript di peramban ini.</div></noscript></main>
+<div class="sec"><span class="meta" id="foot-status">Data tersimpan di perangkat ini.</span>
+  <span class="tools"><button class="btn ghost sm" data-v="data">Kelola cadangan</button></span></div>
+</div>
+<dialog id="dlg"></dialog>
+<div id="toasts" aria-live="polite"></div>
+<input type="file" id="file" accept="application/json,.json" hidden>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
